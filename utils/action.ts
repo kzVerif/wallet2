@@ -57,6 +57,9 @@ export async function checkSlip(formData: FormData) {
     transaction_date: String(formData.get("transaction_date") ?? ""),
   };
 
+  console.log(rawData);
+  
+
   const url = "https://apis.truemoneyservices.com/validate/v1/p2p";
   const token = "9d5a42e7c1e86b76a4e34654c55f88ae";
   const headers = {
@@ -71,6 +74,8 @@ export async function checkSlip(formData: FormData) {
   });
 
   const res = await response.json();
+  console.log(res);
+  
   if (res.status === 'err') {
     switch (res.err) {
       case `Invalid 'transaction_id'. Please check transaction history on TrueMoney app.`:

@@ -1,13 +1,31 @@
 "use client";
 import { checkSlip } from "@/utils/action";
 import { Button } from "./ui/button";
+import { useFormStatus } from "react-dom";
+
+const SubmitButton = () => {
+  const { pending } = useFormStatus();
+  return (
+    <>
+      <Button
+        variant="outline"
+        type="submit"
+        className="w-full bg-blue-600 text-white hover:bg-blue-800 hover:text-white"
+        disabled={pending}
+      >
+        {pending ? "Submitting...." : "Submit"}
+      </Button>
+    </>
+  );
+};
 
 export default function CheckSlip() {
+  
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault(); // Prevent page reload
     const formData = new FormData(event.currentTarget); // Get form data
-    const res  = await checkSlip(formData); // Call the action with form data
-    alert(res)
+    const res = await checkSlip(formData); // Call the action with form data
+    alert(res);
   };
 
   return (
@@ -34,7 +52,6 @@ export default function CheckSlip() {
             placeholder="กรอกเบอร์คนรับ"
             className="border p-2 rounded-lg mb-2 text-sm w-full cursor-not-allowed"
             required
-            disabled
           />
           <p>เลขที่อ้างอิง</p>
           <input
@@ -66,18 +83,12 @@ export default function CheckSlip() {
             formatเวลาทำการ: yyyy-mm-dd HH:mm
           </p>
           <p className=" text-sm mb-2  text-slate-500">
-            formatจำนวนเงินถ้าโอน 200.00 กรอก  20000
+            formatจำนวนเงินถ้าโอน 200.00 กรอก 20000
           </p>
           <p className=" text-sm mb-2 text-slate-500">
             เบอร์ผู้โอนไม่ต้องกรอกก็ได้
           </p>
-          <Button
-            variant="outline"
-            type="submit"
-            className="w-full bg-blue-600 text-white hover:bg-blue-800 hover:text-white"
-          >
-            Submit
-          </Button>
+          <SubmitButton />
         </form>
       </div>
     </div>
