@@ -30,6 +30,8 @@ export default function CheckBalance() {
 
   return (
     <div className="flex items-center justify-center">
+      <form action="">
+        
       <div className="block max-w-sm p-4 border border-gray-200 rounded-lg shadow bg-white">
         {balanceData ? (
           <>
@@ -53,6 +55,7 @@ export default function CheckBalance() {
           Reload
         </Button>
       </div>
+      </form>
     </div>
   );
 }

@@ -88,6 +88,9 @@ export default function CheckSlip() {
           <p className=" text-sm mb-2 text-slate-500">
             เบอร์ผู้โอนไม่ต้องกรอกก็ได้
           </p>
+          <p className=" text-sm mb-2 text-slate-500">
+            เบอร์คนรับไม่ต้องแก้ไข
+          </p>
           <SubmitButton />
         </form>
       </div>
